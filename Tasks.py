@@ -127,14 +127,17 @@ class Tasks:
         due_date = [i['due_date'] for i in self.redmine.gantt_chart()['issues']]
         issues = [i['id'] for i in self.redmine.gantt_chart()['issues']]
         assigned_to= [i['assigned_to']['name'] for i in self.redmine.gantt_chart()['issues']]
-
+  
         df = pd.DataFrame({'dates_start':dates_start, 'issues':issues,'due_date':due_date,'assigned_to':assigned_to})
         df['dates_start']  = [pd.to_datetime(i) for i in df['dates_start']]
         df['due_date']  = [pd.to_datetime(i) for i in df['due_date']]
         
         print(df)
         fig = px.timeline(df, x_start="dates_start", x_end="due_date", y="issues",color="assigned_to",title="<b>GANTT CHART</b>",opacity=0.7)
-        fig.update_yaxes(autorange="reversed",mirror=False)
+        fig.update_yaxes(autorange="reversed",type='category')
+
+        
+        
 
         plotly.offline.plot(fig)
 

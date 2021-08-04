@@ -63,8 +63,10 @@ class RedmineClient:
         url=f'{self.url}/projects/restredmine/issues.json'
         return requests.get(url).json()
 
-    
-    
+    def excel(self):
+        url = f'{self.url}/projects/restredmine/issues.json'
+        return requests.get(url).json()
+
         
         
         

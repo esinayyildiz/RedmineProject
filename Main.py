@@ -8,13 +8,14 @@ from Tasks import Tasks
 
 def main():
     task = Tasks()
-    task.issues_get_graph()
+    task.issues_new_graph()
     task.closed_graph()
     task.time_ent_graph()
-    task.time_ent_graph_person()
     task.custom_field()
     task.gantt_chart()
-
+    task.gui_time_new()
+    task.gui_time_closed()
+    
 if __name__== "__main__" :
     main()
    

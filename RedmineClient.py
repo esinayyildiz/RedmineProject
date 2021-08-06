@@ -46,16 +46,20 @@ class RedmineClient:
     
     
     def time_ent(self):
+        # query_param = 
         url= f'{self.url}/time_entries.json?utf8=%E2%9C%93&set_filter=1&sort=spent_on%3Adesc&f%5B%5D=spent_on&op%5Bspent_on%5D=*&f%5B%5D=issue.status_id&op%5Bissue.status_id%5D=%3D&v%5Bissue.status_id%5D%5B%5D=1&f%5B%5D=&c%5B%5D=project&c%5B%5D=spent_on&c%5B%5D=user&c%5B%5D=activity&c%5B%5D=issue&c%5B%5D=hours&c%5B%5D=issue.status&group_by=&t%5B%5D=hours&t%5B%5D='
         return requests.get(url).json()
     
     
-    def time_ent_person(self):
+    def time_ent_person(self, assignee):
+        params = {
+            'assigned_to': assignee 
+        }
         url= f'{self.url}//projects/restredmine/issues.json?utf8=%E2%9C%93&set_filter=1&sort=id%3Adesc&f%5B%5D=status_id&op%5Bstatus_id%5D=o&f%5B%5D=&c%5B%5D=tracker&c%5B%5D=status&c%5B%5D=priority&c%5B%5D=subject&c%5B%5D=assigned_to&c%5B%5D=updated_on&c%5B%5D=cf_1&group_by=assigned_to&t%5B%5D='
-        return requests.get(url).json()
+        return requests.get(url, params=params).json()
 
     def custom_field(self):
-        url= f'{self.url}/projects/restredmine/issues.json'
+        url= f'{self.url}/issues.json'
         return requests.get(url).json()
     
     

@@ -6,8 +6,6 @@ Created on Tue Jul 13 14:53:27 2021
 
 ♥
 
-☻
-
 """
 from datetime import date
 from os import name
@@ -253,9 +251,10 @@ class Tasks:
                 
         plotly.offline.plot(fig)
 
+
     def time_entry_mtlib(self):
 
-        class NPI(str,Enum):
+        class ProjectCategory(str,Enum):
             purple = "purple"
             RestRedmine = "RestRedmine"
             RESTJSONProject = "RESTJSONProject"
@@ -282,9 +281,9 @@ class Tasks:
 
         for val in project:
             project = val.get('project') 
-            npi_fields = list(filter(lambda f: f.get('name') == 'purple', project))
-            if npi_fields:
-                val['NPI'] = NPI(npi_fields[0].get('value'))   
+            pro_fields = list(filter(lambda f: f.get('name') == 'purple', project))
+            if pro_fields:
+                val['ProjectCategory'] = ProjectCategory(pro_fields[0].get('value'))   
 
         plt.legend()
         plt.show()
